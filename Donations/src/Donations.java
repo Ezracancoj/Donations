@@ -1,55 +1,58 @@
-import java.io.File;
-import java.util.Scanner;
-import java.io.FileNotFoundException;
 public class Donations {
+	int numIndividual;
+	int amtIndividual;
+	int numBusiness;
+	int amtBusiness;
+	int numOther;
+	int amtOther;
 
-	public static void main(String[] args) throws FileNotFoundException {
-		String userInPut;
-		int numIndividual;
-		//The number of individual donations
-		int amtIndividual;
-		//The total of all individual donations
-		int numBusiness;
-		//The number of business donations
-		int amtBusiness;
-		//The total of all business donations
-		int numOther;
-		//The number of other donations
-		int amtOther;
-		//The total of all other donations
-		
-		
-		Scanner start = new Scanner(System.in);
-		
-		System.out.println("Would you like to process donations now?(enter 'Yes' to continue): ");
-		userInPut = start.nextLine();
-		if((userInPut).equals("Yes")) {
-			processData();
+	public void processDonation(String cat,double nums){
+		if(cat.startsWith("<individual") && nums > 0){ 
+			numIndividual = numIndividual + 1;
+			amtIndividual += nums;
 		}
-		else {
-			System.out.println("Ending now without processing donations");
+			
+		if(cat.startsWith("<individual") && nums < 0){ 
+			numIndividual = numIndividual - 1;
+			amtIndividual += nums;
+			  
 		}
 		
-		start.close();
-/*		
-	String.replaceAll
-		*/
+		if(cat.startsWith("<business") && nums > 0){ 
+			numBusiness = numBusiness + 1;
+			amtBusiness += nums;
+		}
+			
+		if(cat.startsWith("<business") && nums < 0){ 
+			numBusiness = numBusiness - 1;
+			amtBusiness += nums;
+			  
+		}
 		
-		
+		if(cat.startsWith("<other") && nums > 0){ 
+			numOther = numOther + 1;
+			amtOther += nums;
+		}
+			
+		if(cat.startsWith("<other") && nums < 0){ 
+			numOther = numOther - 1;
+			amtOther += nums;
+			  
+		}
 	}
+		
+		
+		
 
-	private static void processData()throws FileNotFoundException {
-		File donFile = new File("Donations.txt");
-		Scanner openFile = new Scanner(donFile);
-		String donation = openFile.nextLine();
-		if (donation.startsWith("<individual"));{
-			String nums = donation.replaceAll("[^0-9,^-]","");
-			System.out.println(nums);
-			double numsDouble = Double.parseDouble(nums);
-			System.out.println(numsDouble);
-		}
+			 
 		
-		openFile.close();
-	}
 	
-}
+	public void getStatistics() {
+		System.out.println("Individual: #:"+numIndividual+" $"+amtIndividual);
+		System.out.println("Business: #:"+numBusiness+" $"+amtBusiness);
+		System.out.println("Other: #:"+numOther+" $"+amtOther);
+	}
+
+
+		
+	}
