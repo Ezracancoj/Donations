@@ -7,34 +7,38 @@ public class Donations {
 	int amtOther;
 
 	public void processDonation(String cat,double nums){
-		if(cat.startsWith("<individual") && nums > 0){ 
+		if(cat.equals("EOF")) {
+			;
+		}
+		
+		if(cat.equals("individual") && nums > 0){ 
 			numIndividual = numIndividual + 1;
 			amtIndividual += nums;
 		}
 			
-		if(cat.startsWith("<individual") && nums < 0){ 
+		if(cat.equals("individual") && nums < 0){ 
 			numIndividual = numIndividual - 1;
 			amtIndividual += nums;
 			  
 		}
 		
-		if(cat.startsWith("<business") && nums > 0){ 
+		if(cat.equals("business") && nums > 0){ 
 			numBusiness = numBusiness + 1;
 			amtBusiness += nums;
 		}
 			
-		if(cat.startsWith("<business") && nums < 0){ 
+		if(cat.equals("business") && nums < 0){ 
 			numBusiness = numBusiness - 1;
 			amtBusiness += nums;
 			  
 		}
 		
-		if(cat.startsWith("<other") && nums > 0){ 
+		if(cat.equals("other") && nums > 0){ 
 			numOther = numOther + 1;
 			amtOther += nums;
 		}
 			
-		if(cat.startsWith("<other") && nums < 0){ 
+		if(cat.equals("other") && nums < 0){ 
 			numOther = numOther - 1;
 			amtOther += nums;
 			  

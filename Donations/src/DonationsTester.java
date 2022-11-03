@@ -43,6 +43,7 @@ public class DonationsTester {
 					}
 				
 				if (donation.startsWith("<EOF")){ 
+					cat = "EOF";
 				 	break;
 				 	}
 				
